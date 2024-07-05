@@ -23,3 +23,6 @@ class AdvicerBloc extends Bloc<AdvicerEvent, AdvicerState> {
     );
   }
 }
+
+// stream for state and events
+// bloc has only events

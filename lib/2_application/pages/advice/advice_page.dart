@@ -1,10 +1,9 @@
 import 'package:clean_architecture/2_application/core/services/theme_service.dart';
-import 'package:clean_architecture/2_application/pages/advice/bloc/advicer_bloc.dart';
+import 'package:clean_architecture/2_application/pages/advice/cubit/advicer_cubit.dart';
 import 'package:clean_architecture/2_application/pages/advice/widgets/advice_field.dart';
 import 'package:clean_architecture/2_application/pages/advice/widgets/custom_button.dart';
 import 'package:clean_architecture/2_application/pages/advice/widgets/error_message.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
@@ -14,7 +13,7 @@ class AdvicerPageWrapperProvider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AdvicerBloc(),
+      create: (context) => AdvicerCubit(),
       child: const AdvicePage(),
     );
   }
@@ -49,23 +48,22 @@ class AdvicePage extends StatelessWidget {
           children: [
             Expanded(
               child: Center(
-                child: BlocBuilder<AdvicerBloc, AdvicerState>(
+                child: BlocBuilder<AdvicerCubit, AdvicerCubitState>(
                   builder: (context, state) {
-                    if (state is AdvicerInitial) {
+                    if (state is AdvicerCubitInitial) {
                       return Text(
                         "Your advice is waiting for you!",
                         style: themeData.textTheme.headlineSmall,
                       );
-                    } else if (state is AdvicerStateLoading) {
+                    } else if (state is AdvicerCubitStateLoading) {
                       return CircularProgressIndicator(
                         color: themeData.colorScheme.secondary,
                       );
-                    } else if (state is AdvicerStateLoaded) {
-                      return const AdviceField(
-                        advice:
-                            "Expamle Advice - your advice is waiting for you!",
+                    } else if (state is AdvicerCubitStateLoaded) {
+                      return AdviceField(
+                        advice: state.advice,
                       );
-                    } else if (state is AdvicerStateError) {
+                    } else if (state is AdvicerCubitStateError) {
                       return ErrorMessage(
                         message: state.message,
                       );

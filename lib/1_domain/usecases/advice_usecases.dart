@@ -1,16 +1,12 @@
+import 'package:clean_architecture/0_data/repositories/advice_repo_impl.dart';
 import 'package:clean_architecture/1_domain/entities/advice_entity.dart';
 import 'package:clean_architecture/1_domain/failures/failures.dart';
 import 'package:dartz/dartz.dart';
 
 class AdviceUsecases {
-  Future<Either<Failure, AdviceEntity>> getAdvice() async {
+  final AdviceRepo = AdviceRepoImpl();
+  Future<Either<Failure, AdviceEntity>> getAdvice() {
     // call repository to get the data
-    await Future.delayed(const Duration(seconds: 3));
-    return right(
-      const AdviceEntity(
-        id: 1,
-        advice: "Hope your day is good",
-      ),
-    );
+    return AdviceRepo.getAdviceFromDataSource();
   }
 }

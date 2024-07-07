@@ -1,12 +1,13 @@
-import 'package:clean_architecture/0_data/repositories/advice_repo_impl.dart';
 import 'package:clean_architecture/1_domain/entities/advice_entity.dart';
 import 'package:clean_architecture/1_domain/failures/failures.dart';
+import 'package:clean_architecture/1_domain/repository/advice_repo.dart';
 import 'package:dartz/dartz.dart';
 
 class AdviceUsecases {
-  final AdviceRepo = AdviceRepoImpl();
+  AdviceUsecases({required this.adviceRepo});
+  final AdviceRepo adviceRepo;
   Future<Either<Failure, AdviceEntity>> getAdvice() {
     // call repository to get the data
-    return AdviceRepo.getAdviceFromDataSource();
+    return adviceRepo.getAdviceFromDataSource();
   }
 }

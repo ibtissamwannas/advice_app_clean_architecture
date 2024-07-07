@@ -11,8 +11,11 @@ const ServerFailureMessage = "Server Failure";
 const CacheFailureMessage = "Cache Failure";
 
 class AdvicerCubit extends Cubit<AdvicerCubitState> {
-  AdvicerCubit() : super(AdvicerCubitInitial());
-  final AdviceUsecases adviceUsecases = AdviceUsecases();
+  final AdviceUsecases adviceUsecases;
+  AdvicerCubit({required this.adviceUsecases})
+      : super(
+          AdvicerCubitInitial(),
+        );
 
   void adviceRequestedEvent() async {
     debugPrint("fake get advice triggered");

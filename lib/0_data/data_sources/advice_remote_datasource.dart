@@ -19,9 +19,7 @@ class AdviceRemoteDatasourceImpl implements AdviceRemoteDatasource {
   Future<AdviceModel> getRandomAdviceFromApi() async {
     final response = await client.get(
       Uri.parse('https://api.flutter-community.com/api/v1/advice'),
-      headers: {
-        'accept': 'application/json ',
-      },
+      headers: {'content-type': 'application/json '},
     );
     if (response.statusCode != 200) {
       throw ServerException();

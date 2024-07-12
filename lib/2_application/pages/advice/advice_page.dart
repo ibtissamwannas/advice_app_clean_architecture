@@ -53,7 +53,7 @@ class AdvicePage extends StatelessWidget {
                   builder: (context, state) {
                     if (state is AdvicerCubitInitial) {
                       return Text(
-                        "Your advice is waiting for you!",
+                        'Your Advice is waiting for you!',
                         style: themeData.textTheme.headlineSmall,
                       );
                     } else if (state is AdvicerCubitStateLoading) {
@@ -74,10 +74,13 @@ class AdvicePage extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(
+            SizedBox(
               height: 200,
               child: Center(
-                child: CustomButton(),
+                child: CustomButton(
+                  onTap: () => BlocProvider.of<AdvicerCubit>(context)
+                      .adviceRequestedEvent(),
+                ),
               ),
             ),
           ],

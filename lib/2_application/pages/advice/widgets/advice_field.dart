@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AdviceField extends StatelessWidget {
+  static String emptyAdvice = 'Advice is waiting for you...';
   final String advice;
   const AdviceField({super.key, required this.advice});
 
@@ -23,7 +24,7 @@ class AdviceField extends StatelessWidget {
               vertical: 20,
             ),
             child: Text(
-              '''" $advice "''',
+              advice.isNotEmpty ? '''" $advice "''' : emptyAdvice,
               style: themeData.textTheme.bodySmall,
               textAlign: TextAlign.center,
             ),

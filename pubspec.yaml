@@ -33,6 +33,7 @@ dev_dependencies:
   build_runner: ^2.4.11
   bloc_test: ^9.1.7
   mocktail: ^1.0.4
+  platform: ^3.1.5
 
 
 flutter:
